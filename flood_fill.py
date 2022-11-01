@@ -42,18 +42,19 @@ def flood_fill(input_board: List[str], x: int, y: int) -> List[str]:
         # checking if pixel is empty and can be filled
         if input_board[new_y][new_x] == e:
             input_board[new_y][new_x] = f 
+
+            # show the result
+            input_board_array = np.array(input_board, dtype='uint8')
+            board_to_show = cv2.resize(input_board_array, (500,500))
+            cv2.imshow('Board', board_to_show)
+            cv2.waitKey(100)
+
             # recursion case
             flood_fill(input_board, new_x, new_y)
-
-        # show the result
-        input_board = np.array(input_board, dtype='uint8')
-        board_to_show = cv2.resize(input_board, (500,500))
-        cv2.imshow('Board', board_to_show)
-        cv2.waitKey(50)
         
     return input_board
        
-modified_board = flood_fill(input_board=board, x=10, y=10)
+modified_board = flood_fill(input_board=board, x=5, y=5)
 
 # cleanup
 cv2.destroyAllWindows()
